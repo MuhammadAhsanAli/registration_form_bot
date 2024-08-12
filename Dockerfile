@@ -36,6 +36,10 @@ WORKDIR /var/www
 # Copy application files
 COPY . .
 
+# Permissions for storage directory
+RUN chown -R www-data:www-data /var/www/storage \
+    && chmod -R 775 /var/www/storage \
+
 # Install PHP dependencies
 RUN composer install --prefer-dist --optimize-autoloader --no-dev
 
